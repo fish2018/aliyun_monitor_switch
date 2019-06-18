@@ -4,18 +4,13 @@ import time
 from retry import retry
 
 # 阿里云监控大盘urls
-URLS = [
-    "https://cloudmonitor.console.aliyun.com/?spm=5176.2020520001.aliyun_sidebar.32.69864bd3bjEkG5#/dashboardnew/boardId=a75d5068-70cf-4fcc-bd9e-03cef58e1b1e&boardName=&timeSpan=1",
-    "https://cloudmonitor.console.aliyun.com/?spm=5176.2020520001.aliyun_sidebar.32.69864bd3bjEkG5#/dashboardnew/boardId=b5df3782-a642-43fb-a709-4d6a99d46bd7&boardName=&timeSpan=1",
-    "https://cloudmonitor.console.aliyun.com/?spm=5176.2020520001.aliyun_sidebar.32.69864bd3bjEkG5#/dashboardnew/boardId=2e2ae28c-43fa-4884-b85d-7aad61a35ed4&boardName=&timeSpan=1",
-    "https://cloudmonitor.console.aliyun.com/?spm=5176.2020520001.aliyun_sidebar.32.69864bd3bjEkG5#/dashboardnew/boardId=664ccf03-dbac-421d-8d11-1c8e2920211b&boardName=&timeSpan=1",
-    "https://cloudmonitor.console.aliyun.com/?spm=5176.2020520001.aliyun_sidebar.32.69864bd3bjEkG5#/dashboardnew/boardId=77fa8b9f-ff06-44aa-94e0-5e129531a2e1&boardName=&timeSpan=1"]
+URLS = ["URL1","URL2","URL3"]
 # 用户名
-USERNAME = "devops@1294648747629870.onaliyun.com"
+USERNAME = "USERNAME"
 # 密码
-PASSWORD = "devops@hhotel.com"
+PASSWORD = "PASSWORD"
 # 切换间隔时间
-SWITCHTIME = 5
+SWITCHTIME = 120
 
 
 class Monitor(object):
