@@ -3,6 +3,8 @@
 阿里云监控大盘自动切换页面，配合监控大屏(电视、显示器)使用。
 通过selenium自动登录阿里云监控，批量打开监控大盘页面，自动切换chrome标签
 
+![monitor1.gif](https://img.hacpai.com/file/2019/06/monitor1-fc966c62.gif)
+
 # 参数说明
 使用阿里云-RAM用户登录 https://signin.aliyun.com/login.htm 监控子账号分配只读权限
 - URLS:
