@@ -41,6 +41,7 @@ class Monitor(object):
                 self.browser.execute_script(url)
 
     # 关闭浮动框
+    @retry(tries=10, delay=1)
     def closebox(self):
         try:
             self.browser.find_element_by_css_selector("div.help-guide-step-header > i.topbar-sidebar-no").click()
@@ -48,7 +49,7 @@ class Monitor(object):
             pass
 
     # 切换全屏
-    @retry(tries=7, delay=0.5)
+    @retry(tries=10, delay=1)
     def fullscreen(self):
         try:
             self.browser.find_element_by_class_name("cms4service-hidden").click()
@@ -58,10 +59,12 @@ class Monitor(object):
     # 循环切换浏览器标签
     def loopswitch(self):
         handles = self.browser.window_handles  # 获取当前窗口句柄集合(列表类型)
+        i = 0
         while True:
             for h in handles:
                 self.browser.switch_to.window(h)
-                self.closebox()
+                if i is 0:
+                    self.closebox()
                 self.fullscreen()
                 time.sleep(self.switchtime)
 
