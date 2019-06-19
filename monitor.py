@@ -18,8 +18,8 @@ class Monitor(object):
         self.urls = URLS
         self.switchtime = SWITCHTIME
         # 加启动配置,隐藏"Chrome正在受到自动软件的控制"
-	    option = webdriver.ChromeOptions()
-	    option.add_argument('disable-infobars')
+	option = webdriver.ChromeOptions()
+	option.add_argument('disable-infobars')
         self.browser = webdriver.Chrome(chrome_options=option)
         self.username = USERNAME
         self.password = PASSWORD
