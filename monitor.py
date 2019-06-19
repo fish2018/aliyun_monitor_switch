@@ -66,7 +66,7 @@ class Monitor(object):
                 if i is 0:
                     self.closebox()
                 self.fullscreen()
-                time.sleep(self.switchtime)
+                time.sleep(self.switchtime if self.switchtime >= 30 else 30)
             i += 1
 
     # 启动
