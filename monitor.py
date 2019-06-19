@@ -67,6 +67,7 @@ class Monitor(object):
                     self.closebox()
                 self.fullscreen()
                 time.sleep(self.switchtime)
+            i += 1
 
     # 启动
     def start(self):
