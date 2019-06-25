@@ -66,7 +66,7 @@ class Monitor(object):
         while True:
             for h in handles:
                 self.browser.switch_to.window(h)
-                if i is 0:
+                if i < 3:
                     self.closebox()
                 self.fullscreen()
                 time.sleep(self.switchtime if self.switchtime >= 30 else 30)
