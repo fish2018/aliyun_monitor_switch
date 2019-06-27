@@ -6,7 +6,7 @@ from datetime import datetime
 import os
 
 # 阿里云监控大盘urls
-URLS = ["URL1","URL2","URL3"]
+URLS = ["URL1", "URL2", "URL3"]
 # 用户名
 USERNAME = "USERNAME"
 # 密码
@@ -19,9 +19,9 @@ class Monitor(object):
     def __init__(self):
         self.urls = URLS
         self.switchtime = SWITCHTIME
-	# 加启动配置,隐藏"Chrome正在受到自动软件的控制"
-	option = webdriver.ChromeOptions()
-	option.add_argument('disable-infobars')
+        # 加启动配置,隐藏"Chrome正在受到自动软件的控制"
+        option = webdriver.ChromeOptions()
+        option.add_argument('disable-infobars')
         self.browser = webdriver.Chrome(chrome_options=option)
         self.username = USERNAME
         self.password = PASSWORD
@@ -41,53 +41,55 @@ class Monitor(object):
         for index, u in enumerate(self.urls):
             url = "window.open('%s');" % u
             self.browser.execute_script(url)
-	    self.browser.refresh()
+            self.browser.refresh()
 
     # 关闭浮动框
     @retry(tries=10, delay=1)
     def closebox(self):
         self.browser.find_element_by_css_selector("div.help-guide-step-header > i.topbar-sidebar-no").click()
-	self.autorefresh()
+        self.autorefresh()
 
     # 打开自动刷新
     @retry(tries=10, delay=1)
     def autorefresh(self):
-        self.browser.find_element_by_class_name("auto-refresh-switch").click() 
+        self.browser.find_element_by_class_name("auto-refresh-switch").click()
 
-    # 切换全屏
+        # 切换全屏
+
     @retry(tries=10, delay=1)
     def fullscreen(self):
         self.browser.find_element_by_class_name("cms4service-hidden").click()
 
     # 循环切换浏览器标签
     def loopswitch(self):
-	self.browser.switch_to.window(self.browser.window_handles[0])
+        self.browser.switch_to.window(self.browser.window_handles[0])
         self.browser.close()
         handles = self.browser.window_handles  # 获取当前窗口句柄集合(列表类型)
-	i = 0
+        i = 0
         while True:
             for h in handles:
                 self.browser.switch_to.window(h)
-		if i is 0:
-                	self.closebox()
+                if i is 0:
+                    self.closebox()
                 self.fullscreen()
                 time.sleep(self.switchtime if self.switchtime >= 30 else 30)
-		os.system("clear")
+                os.system("clear")
                 etime = datetime.now()
-                print "Duration: %ss" % (etime - stime).seconds
-		# 每隔1小时重启一次
+                print("Now: %s  Duration: %ss" % (datetime.now().strftime("%Y-%m-%d %H:%M:%S"), (etime - stime).seconds))
+                # 每隔1小时重启一次
                 if (etime - stime).seconds > 3600:
-                    self.browser.quit()	    
-	    i += 1
+                    self.browser.quit()
+            i += 1
 
     # 启动
     def start(self):
-        global stime,etime,n
+        global stime, etime, n
         stime = datetime.now()
         etime = datetime.now()
         self.login()
         self.openurls()
         self.loopswitch()
+
 
 if __name__ == '__main__':
     while True:
