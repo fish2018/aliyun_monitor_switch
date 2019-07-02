@@ -78,7 +78,7 @@ class Monitor(object):
                 print("Now: %s  Duration: %ss" % (datetime.now().strftime("%Y-%m-%d %H:%M:%S"), (etime - stime).seconds))
                 # 每隔1小时重启一次
                 if (etime - stime).seconds > 3600:
-                    self.browser.quit()
+                    self.quit()
             i += 1
 
     # 启动
@@ -90,10 +90,13 @@ class Monitor(object):
         self.openurls()
         self.loopswitch()
 
+    def quit(self):
+        self.browser.quit()
 
 if __name__ == '__main__':
     while True:
         try:
-            Monitor().start()
+            m = Monitor()
+            m.start()
         except Exception:
-            pass
+            m.quit() 
