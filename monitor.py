@@ -47,7 +47,10 @@ class Monitor(object):
     @retry(tries=10, delay=1)
     def closebox(self):
             self.browser.find_element_by_css_selector("div.help-guide-step-header > button.console-base-rc-button").click()
-            self.autorefresh()        
+    # 关闭浮动框2
+    @retry(tries=10, delay=1)
+    def closebox2(self):
+            self.browser.find_element_by_css_selector("div.help-guide-step-header > i.topbar-sidebar-no").click()
 
     # 打开自动刷新
     @retry(tries=10, delay=1)
@@ -70,7 +73,11 @@ class Monitor(object):
             for h in handles:
                 self.browser.switch_to.window(h)
                 if i is 0:
-                    self.closebox()
+                    try:
+                      self.closebox()
+                    except Exception:
+                      self.closebox2()
+                    self.autorefresh()
                 self.fullscreen()
                 time.sleep(self.switchtime if self.switchtime >= 30 else 30)
                 os.system("clear")
