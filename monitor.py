@@ -46,8 +46,8 @@ class Monitor(object):
     # 关闭浮动框
     @retry(tries=10, delay=1)
     def closebox(self):
-        self.browser.find_element_by_css_selector("div.help-guide-step-header > i.topbar-sidebar-no").click()
-        self.autorefresh()
+            self.browser.find_element_by_css_selector("div.help-guide-step-header > button.console-base-rc-button").click()
+            self.autorefresh()        
 
     # 打开自动刷新
     @retry(tries=10, delay=1)
